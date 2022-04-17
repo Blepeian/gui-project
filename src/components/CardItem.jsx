@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import ITEM_TYPE from "../data/types";
+import PopUp from "./PopUp";
 
 const CardItem = ({ item, index, moveItem}) => {
     const ref = useRef(null);
@@ -45,16 +46,20 @@ const CardItem = ({ item, index, moveItem}) => {
 
     drag(drop(ref));
 
+    const [show, setShow] = useState(false);
+    const onOpen = () => setShow(true);
+    const onClose = () => setShow(false);
+
     return (
-        <div
-            ref={ref}
-            style={{ opacity: isDragging ? 0 : 1 }}
-            className={"item"}
-        >
-            <div className={"color-bar"}/>
-            <p className={"item-title"}>{item.title}</p>
-            <p className={"item-status"}>{item.icon}</p>
-        </div>
+        <Fragment>
+            <div ref={ref} style={{ opacity: isDragging ? 0 : 1 }} className={"item"} onClick={onOpen}>
+                <div className={"color-bar"}/>
+                <p className={"item-title"}>{item.title}</p>
+                <p className={"item-status"}>{item.icon}</p>
+            </div>
+
+            <PopUp item={item} onClose={onClose} show={show}/>
+        </Fragment>
     );
 };
 

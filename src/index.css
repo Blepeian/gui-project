@@ -10,7 +10,7 @@ html {
 }
 body {
   color: var(--text-color);
-  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
+  font-family: Roboto;
   margin: 0;
   background-size: cover;
 }
@@ -23,19 +23,6 @@ button {
   color:#CFCFCF;
   font-size: 50px;
   background: transparent;
-  cursor: pointer;
-}
-button.active:after {
-  content: "";
-  display: block;
-  margin: 0 auto;
-  width: 50%;
-  padding-top: 4px;
-  border-bottom: 1px solid var(--primary-color);
-}
-button[type="submit"]{
-  color:#000000;
-  font-size: 16px;
   cursor: pointer;
 }
 select {
@@ -91,7 +78,7 @@ select {
   margin-top: 0;
 }
 .col {
-  min-height: 300px;
+  min-height: 2rem;
   max-width: 300px;
   min-width: 300px;
 }
@@ -104,4 +91,34 @@ select {
   margin-top: 0;
   text-align: center;
   font-weight: bolder;
+}
+.modal {
+  background-color: #F4F5F7;
+  border-radius: 2px;
+  margin: 48px 0 80px;
+  min-height: 450px;
+  width: 800px;
+  outline: none;
+  padding: 20px;
+}
+.overlay {
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.close-bttn-ctn {
+  display: flex;
+}
+.close-bttn {
+  height: 40px;
+  width: 35px;
+  font-size: 20px;
+  color: #031D2C;
+  border: none;
+  border-radius: 25px;
 }
