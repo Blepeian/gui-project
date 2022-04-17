@@ -25,6 +25,12 @@ button {
   background: transparent;
   cursor: pointer;
 }
+button[type="submit"]{
+  color:#000000;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 15px;
+}
 select {
   outline: none;
   height: 40px;
@@ -94,10 +100,10 @@ select {
 }
 .modal {
   background-color: #F4F5F7;
+  width: fit-content;
+  height: fit-content;
   border-radius: 2px;
   margin: 48px 0 80px;
-  min-height: 450px;
-  width: 800px;
   outline: none;
   padding: 20px;
 }
@@ -113,6 +119,7 @@ select {
 }
 .close-bttn-ctn {
   display: flex;
+  float: right;
 }
 .close-bttn {
   height: 40px;
@@ -121,4 +128,15 @@ select {
   color: #031D2C;
   border: none;
   border-radius: 25px;
+}
+.add-bttn {
+  height: 35px;
+  width: 35px;
+  font-size: 20px;
+  color: #031D2C;
+  border: none;
+  cursor: pointer;
+  margin-left: 90%;
+  margin-top: -17%;
+  margin-bottom: 15px;
 }

@@ -1,14 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState} from "react";
 import CardItem from "../components/CardItem";
 import DropContainer from "../components/DropContainer";
 import Column from "../components/Column";
 import {DataContext} from "../data/Data";
+import { CreatePost } from "../data/CRUD";
 
 const Board = () => {
     const [items, setItems, tables] = useContext(DataContext);
 
-    const onDrop = (item, monitor, table) => {
+    const [show, setShow] = useState(false);
+    const onShow = () => setShow(true);
+    const onClose = () => setShow(false);
 
+    const onDrop = (item, monitor, table) => {
         setItems(prevState => {
             const newItems = prevState
                 .filter(i => i.id !== item.id)
@@ -32,6 +36,10 @@ const Board = () => {
                 return (
                     <div key={t.name} className={"col-wrapper"}>
                         <h2 className={"col-header"}>{t.name.toUpperCase()}</h2>
+                        <button className={"add-bttn"} onClick={onShow}>+</button>
+
+                        <CreatePost onClose={onClose} show={show} table={t.name}/>
+
                         <DropContainer onDrop={onDrop} table={t.name}>
                             <Column>
                                 {items
