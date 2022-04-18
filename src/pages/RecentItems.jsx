@@ -1,4 +1,4 @@
-import React, { useContext, useState} from "react";
+import React, { useContext } from "react";
 import {DataContext} from "../data/Data";
 import CardItem from "../components/CardItem";
 
@@ -17,7 +17,6 @@ const RecentItems = () => {
                         }
                     </div>
                 );
-                {console.log(recentItems)};
             })}
         </div>
     );

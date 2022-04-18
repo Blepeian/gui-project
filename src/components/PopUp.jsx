@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import Modal from "react-modal";
 import { DeleteTask, EditTask } from "../data/CRUD";
 import AddLabels from "./Labels";
+import {DataContext} from "../data/Data";
 
 Modal.setAppElement(document.getElementById('root'));
 
@@ -17,6 +18,26 @@ const PopUp = ({ show, onClose, item }) => {
     const [showLabels, setShowLabels] = useState(false);
     const onShowLabels = () => setShowLabels(true);
     const onCloseLabels = () => setShowLabels(false);
+
+    const [items, setItems] = useContext(DataContext);
+
+    const archive = () => {
+        if(item.table === "archive"){
+            item.table = "done";
+        }
+        else{
+            item.table = "archive";
+        }
+
+        const temp = [...items];
+        temp.forEach(i => {
+            if(i.id === item.id){
+                i = item;
+            }
+        });
+        setItems(temp);
+        onClose();
+    }
 
     return (
         <Modal isOpen={show} onRequestClose={onClose} className={"modal"} overlayClassName={"overlay"}>
@@ -45,6 +66,7 @@ const PopUp = ({ show, onClose, item }) => {
                 <EditTask onClose={onCloseEdit} show={showEdit} item={item}/>
                 <button className={"crud-bttn"} onClick={onShowDelete}>Delete</button>
                 <DeleteTask onClose={onCloseDelete} show={showDelete} item={item}/>
+                <button className={"crud-bttn"} onClick={archive}>Archive/Unarchive</button>
             </div>
         </Modal>
     );
