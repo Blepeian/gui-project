@@ -9,7 +9,6 @@ const Board = () => {
     const [items, setItems, tables] = useContext(DataContext);
 
     const [show, setShow] = useState(false);
-    const onShow = () => setShow(true);
     const onClose = () => setShow(false);
 
     const onDrop = (item, monitor, table) => {
@@ -30,18 +29,23 @@ const Board = () => {
         });
     };
 
+    const [name, setName] = useState('');
+    const handleInput = (e) => {
+        setName(e.target.value);
+        setShow(true);
+    }
+
     return (
         <div className={"row"}>
             {tables.map(t => {
                 return (
                     <div key={t.name} className={"col-wrapper"}>
                         <h2 className={"col-header"}>{t.name.toUpperCase()}</h2>
-                        <button className={"add-bttn"} onClick={onShow}>+</button>
-
-                        <CreatePost onClose={onClose} show={show} table={t.name}/>
+                        <button className={"add-bttn"} onClick={handleInput} value={t.name}>+</button>
 
                         <DropContainer onDrop={onDrop} table={t.name}>
                             <Column>
+                                <CreatePost onClose={onClose} show={show} table={name}/>
                                 {items
                                     .filter(i => i.table === t.name)
                                     .map((i, idx) => <CardItem key={i.id} item={i} index={idx} moveItem={moveItem} table={t} />)
