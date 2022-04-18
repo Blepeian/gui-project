@@ -161,3 +161,53 @@ export const DeletePost = ({ show, onClose, item }) =>{
         </div>
     )
 }
+
+export const CreateTable = ({ show, onClose }) =>{
+    const [name, setName] = useState('');
+    const [items, setItems, tables, setTables] = useContext(DataContext);
+
+    const nameTable = (e) =>{
+        setName(e.target.value);
+    }
+
+    const createTable = e =>{
+        e.preventDefault();
+
+        if(name === ""){
+            return;
+        }
+        else{
+            const temp = [...tables];
+            const tempTable = {
+                index: temp.length + 1,
+                name: name
+            };
+
+            temp.push(tempTable);
+
+            setTables(temp);
+            onClose();
+            setName('');
+        }
+    }
+
+    return(
+        <div>
+            <Modal isOpen={show} onRequestClose={onClose} className={"modal"} overlayClassName={"overlay"}>
+                <div className={"close-bttn-ctn"}>
+                    <button className="close-bttn" onClick={onClose}>X</button>
+                </div>
+                
+                <div>
+                    <form onSubmit={createTable}>
+                        <p>New table:</p>
+                        <input type="text" name="name" value={name} onChange={nameTable}/>
+                        <br></br>
+                        <br></br>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </Modal>
+        </div>
+    )
+}
