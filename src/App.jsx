@@ -16,8 +16,6 @@ const App = () => {
         <DndProvider backend={HTML5Backend}>
           <Router>
             <Navbar />
-            <br></br>
-            <br></br>
             <Switch>
               <Route exact path='/' component={Home} />
               <Route exact path='/board' component={Board} />

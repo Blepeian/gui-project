@@ -1,12 +1,12 @@
 :root {
-  --primary-color: rgb(62, 100, 255);
-  --complete-color: #27aa80;
+  --primary-color: rgb(79, 124, 182);
+  --complete-color: rgb(43, 92, 156);
   --text-color: #172b4d;
   --disabled-color: #fad6d6;
   --background-color: #f5eaea;
 }
 html {
-  background: rgb(0,73,191);
+  background: var(--primary-color);
 }
 body {
   color: var(--text-color);
@@ -14,11 +14,16 @@ body {
   margin: 0;
   background-size: cover;
 }
+h1 {
+  font-family: Roboto;
+  color:#CFCFCF;
+}
 p {
   margin: 10px 0;
   overflow-wrap: break-word;
   text-align: left;
   font-size: 16px;
+  font-family: Roboto;
 }
 button {
   color:#CFCFCF;
@@ -27,20 +32,25 @@ button {
   cursor: pointer;
 }
 button[type="submit"]{
+  font-family: Roboto;
+  font-size: 15px;
+  border: none;
   color:#000000;
-  font-size: 14px;
   cursor: pointer;
-  margin-left: 15px;
 }
 select {
   outline: none;
   height: 40px;
+}
+li {
+  list-style-type: none;
 }
 .row {
   display: flex;
   flex-direction: row;
 }
 .item {
+  max-width: 350px;
   font-size: 15px;
   margin-bottom: 10px;
   padding: 10px;
@@ -139,20 +149,52 @@ select {
   margin-top: -17%;
   margin-bottom: 15px;
 }
+.add-table-bttn {
+  height: 100px;
+  width: 150px;
+  color: #adaaaa;
+  background-color: var(--background-color);
+  margin-top: 58px;
+  margin-left: 10px;
+}
 .crud-bttn {
   height: 40px;
-  width: 35px;
+  width: 45px;
   border: none;
-  font-size: 14px;
+  font-size: 15px;
+  font-family: Roboto;
   color: #000000;
   cursor: pointer;
-  margin-right: 15px;
+}
+.add-label-bttn {
+  height: 40px;
+  width: 80px;
+  border: none;
+  font-size: 15px;
+  font-family: Roboto;
+  color: #000000;
+  cursor: pointer;
 }
 .navbar {
   background: var(--complete-color);
-  height: 45px;
+  height: 50px;
   display: flex;
-  justify-content: space-between;
-  z-index: 12;
-  position: absolute;
+  z-index: 1;
+  justify-content: right;
+}
+.nav-element {
+  color: #CFCFCF;
+  text-decoration: none;
+  font-family: Roboto;
+  font-size: 20px;
+  padding: 1.2rem;
+}
+.login-form {
+  padding: 1rem;
+}
+.login-bttn {
+  font-family: Roboto;
+  color: #adaaaa;
+  background-color: var(--background-color);
+  margin-left: 15px;
 }

@@ -13,16 +13,16 @@ const Navbar = () => {
         return (
             <div className={"navbar"}>
                 <li>
-                    <Link to="/" onMouseDown={logout}>LogOut</Link>
+                    <Link className="nav-element" to="/board">Board</Link>
                 </li>
                 <li>
-                    <Link to="/board">Board</Link>
+                    <Link className="nav-element" to="/archive">Archive</Link>
                 </li>
                 <li>
-                    <Link to="/archive">Archive</Link>
+                    <Link className="nav-element" to="/recent">Recent</Link>
                 </li>
                 <li>
-                    <Link to="/recent">Recent</Link>
+                    <Link className="nav-element" to="/" onMouseDown={logout}>Log Out</Link>
                 </li>
             </div>
         );
@@ -31,7 +31,7 @@ const Navbar = () => {
         return (
             <div className={"navbar"}>
                 <li>
-                    <Link to="/">Home</Link>
+                    <Link className="nav-element" to="/">Home</Link>
                 </li>
             </div>
         );

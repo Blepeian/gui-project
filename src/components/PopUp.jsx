@@ -52,7 +52,7 @@ const PopUp = ({ show, onClose, item }) => {
                         "background-color":l.color,
                         "width": 'fit-content'}}>{l.text}</p>)
                 }
-                <button className={"crud-bttn"} onClick={onShowLabels}>Add labels</button>
+                <button className={"add-label-bttn"} onClick={onShowLabels}>Add labels</button>
                 <AddLabels onClose={onCloseLabels} show={showLabels} item={item}/>
                 <p>-----------------------------------------</p>
                 <h3>Description</h3>
@@ -61,7 +61,7 @@ const PopUp = ({ show, onClose, item }) => {
                 <br></br>
             </div>
 
-            <div>
+            <div className={"cruds"}>
                 <button className={"crud-bttn"} onClick={onShowEdit}>Edit</button>
                 <EditTask onClose={onCloseEdit} show={showEdit} item={item}/>
                 <button className={"crud-bttn"} onClick={onShowDelete}>Delete</button>

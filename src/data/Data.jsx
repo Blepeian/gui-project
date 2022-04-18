@@ -135,7 +135,7 @@ export const DataProvider = props => {
     {
       id: 4,
       text: "Help",
-      color: "SeaGreen"
+      color: "LawnGreen"
     },
     {
       id: 5,
@@ -145,12 +145,12 @@ export const DataProvider = props => {
     {
       id: 6,
       text: "Bug Fix",
-      color: "Navy"
+      color: "DodgerBlue"
     },
     {
       id: 7,
       text: "Feature",
-      color: "DarkMagenta"
+      color: "Orchid"
     }
   ])
 

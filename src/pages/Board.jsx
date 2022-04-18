@@ -42,7 +42,7 @@ const Board = () => {
 
     return (
         <div className={"row"}>
-            <button onClick={onShowTable}>+</button>
+            <button onClick={onShowTable} className={"add-table-bttn"}>+</button>
             <CreateTable onClose={onCloseTable} show={showTable}/>
 
             {tables.map(t => {

@@ -68,17 +68,17 @@ export const Home = () => {
 
     return(
         <div>
-            <form onSubmit={authenticate}>
-                <p>Type Your Username:</p>
+            <form className={"login-form"} onSubmit={authenticate}>
+                <p style={{'color': '#CFCFCF'}}>Type Your Username:</p>
                 <input type="text" name="username" value={name} onChange={inputName}></input>
-                <button type="submit">Login</button>
+                <button className={"login-bttn"} type="submit">Login</button>
             </form>
             <br></br>
-            <p>-------------------------------------------------------------</p>
-            <form onSubmit={register}>
-                <p>Type New Username To Register:</p>
+            <p style={{"margin-left": '20px'}}>-----------------------------------------------</p>
+            <form className={"login-form"} onSubmit={register}>
+                <p style={{'color': '#CFCFCF'}}>Type New Username To Register:</p>
                 <input type="text" name="create-username" value={newName} onChange={inputNewName}></input>
-                <button type="submit">Register</button>
+                <button className={"login-bttn"} type="submit">Register</button>
             </form>
         </div>
     );

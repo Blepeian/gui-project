@@ -6,7 +6,7 @@ const RecentItems = () => {
     const [items, setItems, tables, setTables, recentItems, setRecentItems] = useContext(DataContext);
 
     return (
-        <div>
+        <div className="login-form">
             <h1>Recent Tasks</h1>
             {recentItems.map(r => {
                 return (
