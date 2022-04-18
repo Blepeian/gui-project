@@ -61,3 +61,95 @@ export const CreatePost = ({ show, onClose, table }) =>{
         </div>
     )
 }
+
+export const EditPost = ({ show, onClose, item }) =>{
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
+    const [items, setItems, tables, setTables] = useContext(DataContext);
+
+    const postTitle = (e) =>{
+        setTitle(e.target.value);
+    }
+
+    const postContent = (e) =>{
+        setContent(e.target.value);
+    }
+
+    const editPost = e =>{
+        e.preventDefault();
+
+        if(title === "" || content === ""){
+            return;
+        }
+        else{
+            const temp = [...items];
+            const tempItem = {
+                index: item.id,
+                table: item.table,
+                title: title,
+                content: content
+            };
+            
+            temp.splice(item.id-1, 1);
+            temp.push(tempItem);
+
+            setItems(temp);
+            onClose();
+            setTitle('');
+            setContent('');
+        }
+    }
+
+    return(
+        <div>
+            <Modal isOpen={show} onRequestClose={onClose} className={"modal"} overlayClassName={"overlay"}>
+                <div className={"close-bttn-ctn"}>
+                    <button className="close-bttn" onClick={onClose}>X</button>
+                </div>
+                
+                <div>
+                    <form onSubmit={editPost}>
+                        <h3>Edit post:</h3>
+                        <p>Title:</p>
+                        <input type="text" name="title" value={title} onChange={postTitle}/>
+                        <p>Content:</p>
+                        <input type="text" name="content" value={content} onChange={postContent}/>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </Modal>
+        </div>
+    )
+}
+
+export const DeletePost = ({ show, onClose, item }) =>{
+    const [items, setItems, tables, setTables] = useContext(DataContext);
+
+    const deletePost = e =>{
+        e.preventDefault();
+
+        const temp = [...items];
+        temp.splice(item.id-1, 1);
+
+        setItems(temp);
+        onClose();
+    }
+
+    return(
+        <div>
+            <Modal isOpen={show} onRequestClose={onClose} className={"modal"} overlayClassName={"overlay"}>
+                <div className={"close-bttn-ctn"}>
+                    <button className="close-bttn" onClick={onClose}>X</button>
+                </div>
+                
+                <div>
+                    <form onSubmit={deletePost}>
+                        <h3>Are you sure you want to delete this post?</h3>
+                        <button type="submit">Yes</button>
+                        <button className={"crud-bttn"} onClick={onClose}>No</button>
+                    </form>
+                </div>
+            </Modal>
+        </div>
+    )
+}
