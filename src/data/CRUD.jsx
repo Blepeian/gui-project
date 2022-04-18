@@ -29,7 +29,8 @@ export const CreateTask = ({ show, onClose, table }) =>{
                 id: temp.length + 1,
                 table: table,
                 title: title,
-                content: content
+                content: content,
+                labels: [""]
             };
             temp.push(tempItem);
 
@@ -96,7 +97,8 @@ export const EditTask = ({ show, onClose, item }) =>{
                 id: item.id,
                 table: item.table,
                 title: title,
-                content: content
+                content: content,
+                labels: [...item.labels]
             };
             
             temp[item.id-1] = tempItem;
