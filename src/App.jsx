@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {Home, AuthProvider} from "./pages/Homepage"
 import Board from "./pages/Board";
 import RecentItems from "./pages/RecentItems";
 import Archive from "./pages/Archive";
@@ -10,20 +11,23 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const App = () => {
   return (
-    <DataProvider>
-      <DndProvider backend={HTML5Backend}>
-        <Router>
-          <Navbar />
-          <br></br>
-          <br></br>
-          <Switch>
-            <Route exact path='/' component={Board} />
-            <Route path='/recent' component={RecentItems} />
-            <Route path='/archive' component={Archive} />
-          </Switch>
-        </Router>
-      </DndProvider>
-    </DataProvider>
+    <AuthProvider>
+      <DataProvider>
+        <DndProvider backend={HTML5Backend}>
+          <Router>
+            <Navbar />
+            <br></br>
+            <br></br>
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route exact path='/board' component={Board} />
+              <Route path='/recent' component={RecentItems} />
+              <Route path='/archive' component={Archive} />
+            </Switch>
+          </Router>
+        </DndProvider>
+      </DataProvider>
+    </AuthProvider>
   );
 };
 
