@@ -4,20 +4,20 @@ import Modal from "react-modal";
 
 Modal.setAppElement(document.getElementById('root'));
 
-export const CreatePost = ({ show, onClose, table }) =>{
+export const CreateTask = ({ show, onClose, table }) =>{
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [items, setItems, tables, setTables, recentItems, setRecentItems] = useContext(DataContext);
 
-    const postTitle = (e) =>{
+    const taskTitle = (e) =>{
         setTitle(e.target.value);
     }
 
-    const postContent = (e) =>{
+    const taskContent = (e) =>{
         setContent(e.target.value);
     }
 
-    const createPost = e =>{
+    const createTask = e =>{
         e.preventDefault();
 
         if(title === "" || content === ""){
@@ -35,7 +35,11 @@ export const CreatePost = ({ show, onClose, table }) =>{
 
             const tempRecent = [...recentItems];
             tempRecent.shift();
-            tempRecent.push(tempItem);
+            tempRecent.push({id:tempRecent.length, item_id:tempItem.id});
+
+            for(var i = 0; i < tempRecent.length; i++){
+                tempRecent[i].id = i+1;
+            }
 
             setItems(temp);
             setRecentItems(tempRecent);
@@ -53,12 +57,12 @@ export const CreatePost = ({ show, onClose, table }) =>{
                 </div>
                 
                 <div>
-                    <form onSubmit={createPost}>
-                        <h3>New post:</h3>
+                    <form onSubmit={createTask}>
+                        <h3>New task:</h3>
                         <p>Title:</p>
-                        <input type="text" name="title" value={title} onChange={postTitle}/>
+                        <input type="text" name="title" value={title} onChange={taskTitle}/>
                         <p>Content:</p>
-                        <input type="text" name="content" value={content} onChange={postContent}/>
+                        <input type="text" name="content" value={content} onChange={taskContent}/>
                         <button type="submit">Submit</button>
                     </form>
                 </div>
@@ -67,20 +71,20 @@ export const CreatePost = ({ show, onClose, table }) =>{
     )
 }
 
-export const EditPost = ({ show, onClose, item }) =>{
+export const EditTask = ({ show, onClose, item }) =>{
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [items, setItems, tables, setTables] = useContext(DataContext);
 
-    const postTitle = (e) =>{
+    const taskTitle = (e) =>{
         setTitle(e.target.value);
     }
 
-    const postContent = (e) =>{
+    const taskContent = (e) =>{
         setContent(e.target.value);
     }
 
-    const editPost = e =>{
+    const editTask = e =>{
         e.preventDefault();
 
         if(title === "" || content === ""){
@@ -112,12 +116,12 @@ export const EditPost = ({ show, onClose, item }) =>{
                 </div>
                 
                 <div>
-                    <form onSubmit={editPost}>
+                    <form onSubmit={editTask}>
                         <h3>Edit post:</h3>
                         <p>Title:</p>
-                        <input type="text" name="title" value={title} onChange={postTitle}/>
+                        <input type="text" name="title" value={title} onChange={taskTitle}/>
                         <p>Content:</p>
-                        <input type="text" name="content" value={content} onChange={postContent}/>
+                        <input type="text" name="content" value={content} onChange={taskContent}/>
                         <button type="submit">Submit</button>
                     </form>
                 </div>
@@ -126,10 +130,10 @@ export const EditPost = ({ show, onClose, item }) =>{
     )
 }
 
-export const DeletePost = ({ show, onClose, item }) =>{
+export const DeleteTask = ({ show, onClose, item }) =>{
     const [items, setItems, tables, setTables] = useContext(DataContext);
 
-    const deletePost = e =>{
+    const deleteTask = e =>{
         e.preventDefault();
 
         const temp = [...items];
@@ -151,7 +155,7 @@ export const DeletePost = ({ show, onClose, item }) =>{
                 </div>
                 
                 <div>
-                    <form onSubmit={deletePost}>
+                    <form onSubmit={deleteTask}>
                         <h3>Are you sure you want to delete this post?</h3>
                         <button type="submit">Yes</button>
                         <button className={"crud-bttn"} onClick={onClose}>No</button>

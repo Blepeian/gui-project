@@ -39,7 +39,6 @@ select {
 .row {
   display: flex;
   flex-direction: row;
-  justify-content: center;
 }
 .item {
   font-size: 15px;
@@ -148,4 +147,12 @@ select {
   color: #000000;
   cursor: pointer;
   margin-right: 15px;
+}
+.navbar {
+  background: var(--complete-color);
+  height: 45px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 12;
+  position: absolute;
 }

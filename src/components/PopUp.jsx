@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import Modal from "react-modal";
-import { DeletePost, EditPost } from "../data/CRUD";
+import { DeleteTask, EditTask } from "../data/CRUD";
 
 Modal.setAppElement(document.getElementById('root'));
 
@@ -29,9 +29,9 @@ const PopUp = ({ show, onClose, item }) => {
 
             <div>
                 <button className={"crud-bttn"} onClick={onShowEdit}>Edit</button>
-                <EditPost onClose={onCloseEdit} show={showEdit} item={item}/>
+                <EditTask onClose={onCloseEdit} show={showEdit} item={item}/>
                 <button className={"crud-bttn"} onClick={onShowDelete}>Delete</button>
-                <DeletePost onClose={onCloseDelete} show={showDelete} item={item}/>
+                <DeleteTask onClose={onCloseDelete} show={showDelete} item={item}/>
             </div>
         </Modal>
     );

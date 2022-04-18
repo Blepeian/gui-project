@@ -6,7 +6,7 @@ export const DataProvider = props => {
   const [items, setItems] = useState([
     {
       id: 1,
-      table: "archive",
+      table: "in progress",
       title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       content: "Sed vestibulum lectus sed dictum elementum.",
     },
@@ -50,22 +50,18 @@ export const DataProvider = props => {
   const [tables, setTables] = useState([
     {
       index: 1,
-      name: "archive",
-    },
-    {
-      index: 2,
       name: "open",
     },
     {
-      index: 3,
+      index: 2,
       name: "in progress",
     },
     {
-      index: 4,
+      index: 3,
       name: "in review",
     },
     {
-      index: 5,
+      index: 4,
       name: "done",
     },
   ]);
@@ -81,10 +77,43 @@ export const DataProvider = props => {
     localStorage.setItem("tables", JSON.stringify(tables));
   })
 
+  const [recentItems, setRecentItems] = useState([
+    {
+      id: 1,
+      item_id: 1,
+    },
+    {
+      id: 2,
+      item_id: 2,
+    },
+    {
+      id: 3,
+      item_id: 3,
+    },
+    {
+      id: 4,
+      item_id: 4,
+    },
+    {
+      id: 5,
+      item_id: 5,
+    }
+  ]);
+
+  useEffect(() => {
+    const data = localStorage.getItem("recentItems");
+    if(data) {
+      setRecentItems(JSON.parse(data));
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem("recentItems", JSON.stringify(recentItems));
+  })
 
   return(
     <div>
-      <DataContext.Provider value={[items, setItems, tables, setTables]}>
+      <DataContext.Provider value={[items, setItems, tables, setTables, recentItems, setRecentItems]}>
         {props.children}
       </DataContext.Provider>
     </div>

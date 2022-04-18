@@ -1,25 +1,25 @@
 import React, {useState} from "react";
 import Board from "./pages/Board";
+import RecentItems from "./pages/RecentItems";
+import Navbar from "./components/Navbar";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import {DataProvider} from "./data/Data";
-import { CreateTable } from "./data/CRUD";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const App = () => {
-  const [show, setShow] = useState(false);
-  const onShow = () => setShow(true);
-  const onClose = () => setShow(false);
-
   return (
     <DataProvider>
       <DndProvider backend={HTML5Backend}>
-          <div className={"row"}>
-            <p className={"page-header"}>Trello Clone For GUI HW</p>
-          </div>
-
-          <button onClick={onShow}>+</button>
-          <CreateTable onClose={onClose} show={show}/>
-          <Board />
+        <Router>
+          <Navbar />
+          <br></br>
+          <br></br>
+          <Switch>
+            <Route exact path='/' component={Board} />
+            <Route path='/recent' component={RecentItems} />
+          </Switch>
+        </Router>
       </DndProvider>
     </DataProvider>
   );
