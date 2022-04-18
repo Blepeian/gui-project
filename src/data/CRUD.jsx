@@ -7,7 +7,7 @@ Modal.setAppElement(document.getElementById('root'));
 export const CreatePost = ({ show, onClose, table }) =>{
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const [items, setItems, tables, setTables] = useContext(DataContext);
+    const [items, setItems, tables, setTables, recentItems, setRecentItems] = useContext(DataContext);
 
     const postTitle = (e) =>{
         setTitle(e.target.value);
@@ -26,14 +26,19 @@ export const CreatePost = ({ show, onClose, table }) =>{
         else{
             const temp = [...items];
             const tempItem = {
-                index: temp.length + 1,
+                id: temp.length + 1,
                 table: table,
                 title: title,
                 content: content
             };
             temp.push(tempItem);
 
+            const tempRecent = [...recentItems];
+            tempRecent.shift();
+            tempRecent.push(tempItem);
+
             setItems(temp);
+            setRecentItems(tempRecent);
             onClose();
             setTitle('');
             setContent('');
@@ -84,14 +89,13 @@ export const EditPost = ({ show, onClose, item }) =>{
         else{
             const temp = [...items];
             const tempItem = {
-                index: item.id,
+                id: item.id,
                 table: item.table,
                 title: title,
                 content: content
             };
             
-            temp.splice(item.id-1, 1);
-            temp.push(tempItem);
+            temp[item.id-1] = tempItem;
 
             setItems(temp);
             onClose();
@@ -129,7 +133,11 @@ export const DeletePost = ({ show, onClose, item }) =>{
         e.preventDefault();
 
         const temp = [...items];
-        temp.splice(item.id-1, 1);
+        for(var i = 0; i < temp.length; i++){
+            if(temp[i].id === item.id){
+                temp.splice(i, 1);
+            }
+        }
 
         setItems(temp);
         onClose();
