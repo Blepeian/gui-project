@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { AuthContext } from "../pages/Homepage";
 
 const Navbar = () => {
     const [loggedIn, setLoggedIn] = useContext(AuthContext);
+    const homepage = useHistory();
 
     const logout = e => {
         setLoggedIn(false);
+        homepage.push('/');
     }
 
     if(loggedIn){
